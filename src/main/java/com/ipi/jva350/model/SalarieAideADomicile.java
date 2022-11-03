@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 public class SalarieAideADomicile {
 
-    public static float CONGES_PAYES_ACQUIS_PAR_MOIS = 2.5f;
+    public static final float CONGESPAYESACQUISPARMOIS = 2.5f;
 
 
     @Id
@@ -42,8 +42,7 @@ public class SalarieAideADomicile {
     private double congesPayesAcquisAnneeNMoins1= 0;
     private double congesPayesPrisAnneeNMoins1= 0;
 
-    public SalarieAideADomicile() {
-    }
+    public SalarieAideADomicile() {}
 
     public SalarieAideADomicile(String nom, LocalDate moisDebutContrat, LocalDate moisEnCours,
                                 //LinkedHashSet<LocalDate> congesPayesPris,
