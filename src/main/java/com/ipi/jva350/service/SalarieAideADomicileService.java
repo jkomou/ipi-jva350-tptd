@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class SalarieAideADomicileService {
 
     @Autowired
-    private SalarieAideADomicileRepository salarieAideADomicileRepository;
+    private static SalarieAideADomicileRepository salarieAideADomicileRepository;
 
     public SalarieAideADomicileService() {
     }
@@ -56,9 +56,9 @@ public class SalarieAideADomicileService {
      * @param dernierJourDeConge demandé
      * @return arrondi à l'entier le plus proche
      */
-    public long calculeLimiteEntrepriseCongesPermis(LocalDate moisEnCours, double congesPayesAcquisAnneeNMoins1,
-                                                      LocalDate moisDebutContrat,
-                                                      LocalDate premierJourDeConge, LocalDate dernierJourDeConge) {
+    public static long calculeLimiteEntrepriseCongesPermis(LocalDate moisEnCours, double congesPayesAcquisAnneeNMoins1,
+                                                           LocalDate moisDebutContrat,
+                                                           LocalDate premierJourDeConge, LocalDate dernierJourDeConge) {
         // proportion selon l'avancement dans l'année, pondérée avec poids plus gros sur juillet et août (20 vs 8) :
         double proportionPondereeDuConge = Math.max(Entreprise.proportionPondereeDuMois(premierJourDeConge),
                 Entreprise.proportionPondereeDuMois(dernierJourDeConge));
@@ -164,7 +164,7 @@ public class SalarieAideADomicileService {
         salarieAideADomicile.setJoursTravaillesAnneeN(salarieAideADomicile.getJoursTravaillesAnneeN() + joursTravailles);
 
         salarieAideADomicile.setCongesPayesAcquisAnneeN(salarieAideADomicile.getCongesPayesAcquisAnneeN()
-                + salarieAideADomicile.CONGESPAYESACQUISPARMOIS);
+                + salarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS);
 
         salarieAideADomicile.setMoisEnCours(salarieAideADomicile.getMoisEnCours().plusMonths(1));
 
